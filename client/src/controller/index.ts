@@ -25,6 +25,11 @@ export class AdminController {
     try {
       const { name, email, subject, contactNumber } = req.body;
 
+      if (!name || !email || !subject || !contactNumber)
+        return res
+          .status(StatusCodes.INTERNAL_SERVER_ERROR)
+          .json({ message: "Missing form field." });
+
       const subjectData = await this.prisma.option.findFirst({
         where: {
           label: subject,
@@ -72,6 +77,11 @@ export class AdminController {
     try {
       const { name, level, teacherEmail } = req.body;
 
+      if (!name || !level || !teacherEmail)
+        return res
+          .status(StatusCodes.INTERNAL_SERVER_ERROR)
+          .json({ message: "Missing form fields." });
+
       const classLevel = await this.prisma.option.findFirst({
         where: {
           label: level,
@@ -86,6 +96,7 @@ export class AdminController {
       const teacher = await this.prisma.teacher.findFirst({
         where: {
           email: teacherEmail,
+          isActive: true,
         },
       });
 
