@@ -38,8 +38,8 @@ export class AdminController {
 
       if (!subjectData)
         return res
-          .status(StatusCodes.INTERNAL_SERVER_ERROR)
-          .json({ message: "Unable to find subject." });
+          .status(StatusCodes.UNPROCESSABLE_ENTITY)
+          .json({ message: "Invalid subject." });
 
       const teacher = await this.prisma.teacher.create({
         data: {
@@ -85,13 +85,14 @@ export class AdminController {
       const classLevel = await this.prisma.option.findFirst({
         where: {
           label: level,
+          isActive: true,
         },
       });
 
       if (!classLevel)
         return res
-          .status(StatusCodes.INTERNAL_SERVER_ERROR)
-          .json({ message: "Unable to find class level." });
+          .status(StatusCodes.UNPROCESSABLE_ENTITY)
+          .json({ message: "Invalid class level." });
 
       const teacher = await this.prisma.teacher.findFirst({
         where: {
@@ -102,7 +103,7 @@ export class AdminController {
 
       if (!teacher)
         return res
-          .status(StatusCodes.INTERNAL_SERVER_ERROR)
+          .status(StatusCodes.NOT_FOUND)
           .json({ message: "Unable to find teacher." });
 
       const newClass = await this.prisma.class.create({
