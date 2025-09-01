@@ -62,7 +62,7 @@ model Class {
   level   Option @relation(fields: [levelId], references: [id]) // <— references id
 
   // form teacher
-  teacherId   Int     @map("teacher_id")
+  teacherId   Int     @map("teacher_email") 
   formTeacher Teacher @relation(fields: [teacherId], references: [id])
 
   isActive     Boolean  @default(true) @map("is_active")
