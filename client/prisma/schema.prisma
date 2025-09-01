@@ -6,10 +6,70 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["config", "institution"]
+}
+
+model Option {
+  id           Int       @id @default(autoincrement())
+  category     String    @db.VarChar(50) // "class_level" | "subject"
+  code         String    @db.VarChar(50) // "P1" | "MATH"
+  label        String    @db.VarChar(255)
+  description  String?   @db.Text
+  sortOrder    Int       @default(0) @map("sort_order")
+  isActive     Boolean   @default(true) @map("is_active")
+  created_date DateTime  @default(now()) @db.Timestamptz(6)
+  updated_date DateTime  @updatedAt @db.Timestamptz(6)
+  Teacher      Teacher[]
+  Class        Class[]
+
+  @@unique([category, code], name: "uq_option_category_code")
+  @@index([category, isActive, sortOrder])
+  @@map("options")
+  @@schema("config")
+}
+
+model Teacher {
+  id            Int    @id @default(autoincrement())
+  name          String @db.VarChar(255)
+  email         String @unique @db.VarChar(255)
+  contactNumber String @map("contact_number") @db.VarChar(30)
+
+  // REPLACE the two lines below if you still have subjectCode/code
+  subjectId Int    @map("subject_id")
+  subject   Option @relation(fields: [subjectId], references: [id]) // <— references id
+
+  isActive     Boolean  @default(true) @map("is_active")
+  created_date DateTime @default(now()) @db.Timestamptz(6)
+  updated_date DateTime @updatedAt @db.Timestamptz(6)
+
+  classes Class[]
+
+  @@map("teachers")
+  @@schema("institution")
+}
+
+model Class {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(100) // "Class 1A"
+
+  // REPLACE the two lines below if you still have levelCode/code
+  levelId Int    @map("level_id")
+  level   Option @relation(fields: [levelId], references: [id]) // <— references id
+
+  // form teacher
+  teacherId   Int     @map("teacher_id")
+  formTeacher Teacher @relation(fields: [teacherId], references: [id])
+
+  isActive     Boolean  @default(true) @map("is_active")
+  created_date DateTime @default(now()) @db.Timestamptz(6)
+  updated_date DateTime @updatedAt @db.Timestamptz(6)
+
+  @@unique([name, levelId], name: "uq_class_name_level")
+  @@map("classes")
+  @@schema("institution")
 }
