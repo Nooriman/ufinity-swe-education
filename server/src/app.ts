@@ -2,11 +2,19 @@ import express from "express";
 import { setupSwagger } from "./config/swagger-config";
 import dotenv from "dotenv";
 const apiRoutes = require("./routes");
+const cors = require("cors");
 
 dotenv.config();
 
 const port = Number(process.env.PORT);
 const app = express();
+
+app.use(
+  cors({
+    origin: process.env.REACT_BASE_URL,
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 setupSwagger(app);

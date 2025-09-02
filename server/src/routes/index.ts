@@ -241,4 +241,67 @@ router.get("/classes", (req: Request, res: Response) => {
   adminController.getAllClasses(req, res);
 });
 
+/**
+ * @swagger
+ * /api/dropdown-options:
+ *   get:
+ *     summary: Get dropdown options for class levels and teachers
+ *     tags: [Admin]
+ *     responses:
+ *       200:
+ *         description: Dropdown options retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 level:
+ *                   type: array
+ *                   description: Available class levels
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         example: 1
+ *                       label:
+ *                         type: string
+ *                         example: Primary 1
+ *                       value:
+ *                         type: string
+ *                         example: P1
+ *                       category:
+ *                         type: string
+ *                         example: class_level
+ *                 teachers:
+ *                   type: array
+ *                   description: Available teachers
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         example: 12
+ *                       name:
+ *                         type: string
+ *                         example: Mary
+ *                       email:
+ *                         type: string
+ *                         example: teachermary@gmail.com
+ *                       contactNumber:
+ *                         type: string
+ *                         example: "68129414"
+ *                       subjectId:
+ *                         type: integer
+ *                         example: 3
+ *                       isActive:
+ *                         type: boolean
+ *                         example: true
+ *       500:
+ *         description: Unexpected server error
+ */
+router.get("/dropdown-options", (req: Request, res: Response) => {
+  adminController.getDropdownOptions(req, res);
+});
+
 module.exports = router;

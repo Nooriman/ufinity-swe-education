@@ -64,6 +64,7 @@ export class AdminController {
       const classes = await this.prisma.class.findMany({
         include: {
           formTeacher: true,
+          level: true,
         },
       });
 
@@ -84,7 +85,7 @@ export class AdminController {
 
       const classLevel = await this.prisma.option.findFirst({
         where: {
-          label: level,
+          code: level,
           isActive: true,
         },
       });
@@ -117,6 +118,19 @@ export class AdminController {
       res
         .status(StatusCodes.CREATED)
         .json({ message: "Successfully created new class!", data: newClass });
+    } catch (error: any) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+    }
+  }
+
+  async getDropdownOptions(req: Request, res: Response) {
+    try {
+      const options = await this.prisma.option.findMany();
+      const level = options.filter((item) => item.category === "class_level");
+
+      const teachers = await this.prisma.teacher.findMany();
+
+      return res.status(StatusCodes.OK).json({ level, teachers });
     } catch (error: any) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
     }
