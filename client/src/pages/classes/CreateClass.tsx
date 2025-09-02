@@ -50,7 +50,7 @@ const CreateClass = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/getDropdownOption").then((res) => {
+    axios.get("http://localhost:4000/api/dropdown-options").then((res) => {
       console.log("res", res.data);
       setOptions({
         level: res.data.level,
