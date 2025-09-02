@@ -1,0 +1,126 @@
+:root {
+  --efb-bg: #0b1020;
+  --efb-card-bg: #ffffff;
+  --efb-text: #1f2937;
+  --efb-subtext: #6b7280;
+  --efb-primary: #2563eb;
+  --efb-primary-hover: #1d4ed8;
+  --efb-border: #e5e7eb;
+  --efb-danger: #b91c1c;
+  --efb-code-bg: #0f172a;
+  --efb-code-text: #e5e7eb;
+  --efb-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.efb-wrapper {
+  min-height: 100dvh;
+  width: 100vw;
+  background: radial-gradient(
+    1000px 600px at 10% -10%,
+    #1e293b 0%,
+    #0b1020 50%,
+    #0b1020 100%
+  );
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.efb-card {
+  width: min(720px, 100%);
+  background: var(--efb-card-bg);
+  border: 1px solid var(--efb-border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--efb-shadow);
+}
+
+.efb-icon {
+  font-size: 28px;
+  line-height: 1;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.efb-title {
+  margin: 0 0 4px 0;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--efb-text);
+}
+
+.efb-subtitle {
+  margin: 0 0 16px 0;
+  color: var(--efb-subtext);
+  font-size: 14px;
+}
+
+.efb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.efb-btn {
+  appearance: none;
+  border: 1px solid var(--efb-border);
+  background: white;
+  color: var(--efb-text);
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
+}
+.efb-btn:active {
+  transform: translateY(1px);
+}
+
+.efb-btn-primary {
+  background: var(--efb-primary);
+  color: white;
+  border-color: var(--efb-primary);
+}
+.efb-btn-primary:hover {
+  background: var(--efb-primary-hover);
+}
+
+.efb-btn-ghost:hover {
+  background: #f8fafc;
+}
+
+.efb-details {
+  margin: 0;
+  padding: 14px;
+  background: var(--efb-code-bg);
+  color: var(--efb-code-text);
+  border-radius: 10px;
+  overflow: auto;
+  max-height: 320px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid #1f2937;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .efb-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+  .efb-title {
+    font-size: 20px;
+  }
+  .efb-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
