@@ -1,42 +1,74 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.app-main {
+  width: 100vw;
+  height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* --- Top bar --- */
+.topbar-appbar {
+  background-color: #fff !important;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.topbar-toolbar {
+  padding-left: 48px;
+  padding-right: 48px;
+  height: 88px;
+  display: flex;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* left side: logo + title */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 75px;
 }
 
-.card {
-  padding: 2em;
+.topbar-logo {
+  height: 36px;
+  width: auto;
+  display: block;
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+.topbar-title {
+  font-weight: 700;
+  font-size: 24px;
+  color: #1976d2; /* MUI primary.main default */
+}
+
+/* spacer between brand and tabs */
+.topbar-spacer {
+  flex: 1;
+}
+
+/* right side: Tabs */
+.topbar-tabs {
+  min-height: auto; /* remove extra container height */
+}
+
+/* tweak the actual Tab items */
+.topbar-tabs .MuiTab-root {
+  min-height: auto; /* remove extra Tab height */
+  padding-top: 0; /* py: 0 */
+  padding-bottom: 0;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* optional: spacing between tabs */
+.topbar-tabs .MuiTabs-flexContainer {
+  gap: 24px; /* adjust to taste */
+}
+
+/* optional: raise the indicator slightly */
+.topbar-tabs .MuiTabs-indicator {
+  bottom: 4px;
+}
+
+/* --- Page content area --- */
+.app-content {
+  width: 100%;
+  height: 100%;
 }
