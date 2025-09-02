@@ -1,15 +1,39 @@
-import { Button } from "@mui/material";
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import MainLayout from "../../layout/MainLayout";
 import AddIcon from "@mui/icons-material/Add";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Classes = () => {
   const navigate = useNavigate();
 
+  const [classList, setClassList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const navToCreation = () => {
     navigate("create");
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/classes")
+      .then((res) => {
+        setClassList(res.data);
+        console.log("res", res.data);
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  if (isLoading) return <>Loading...</>;
+
   return (
     <MainLayout
       title={
@@ -33,36 +57,63 @@ const Classes = () => {
           borderRadius: "8px",
         }}
       >
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0px 2px 6px 0px rgba(0, 0, 0, 0.2)",
-            flexDirection: "column",
-            gap: "24px",
-          }}
-        >
-          <span
+        {classList.length === 0 ? (
+          <div
             style={{
-              color: "#333",
-              fontSize: "18px",
-              lineHeight: "26px",
-              fontWeight: 800,
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0px 2px 6px 0px rgba(0, 0, 0, 0.2)",
+              flexDirection: "column",
+              gap: "24px",
             }}
           >
-            There are no existing classes yet.
-          </span>
-          <Button
-            onClick={navToCreation}
-            variant="contained"
-            style={{ textTransform: "none" }}
-            startIcon={<AddIcon />}
-          >
-            Add Class
-          </Button>
-        </div>
+            <span
+              style={{
+                color: "#333",
+                fontSize: "18px",
+                lineHeight: "26px",
+                fontWeight: 800,
+              }}
+            >
+              There are no existing classes yet.
+            </span>
+            <Button
+              onClick={navToCreation}
+              variant="contained"
+              style={{ textTransform: "none" }}
+              startIcon={<AddIcon />}
+            >
+              Add Class
+            </Button>
+          </div>
+        ) : (
+          <div style={{ color: "black", padding: "32px" }}>
+            <Table>
+              <TableHead>
+                <TableRow style={{ backgroundColor: "#e2e2e2" }}>
+                  <TableCell style={{ fontWeight: 800 }}>#</TableCell>
+                  <TableCell style={{ fontWeight: 800 }}>Class Level</TableCell>
+                  <TableCell style={{ fontWeight: 800 }}>Class Name</TableCell>
+                  <TableCell style={{ fontWeight: 800 }}>
+                    Form Teacher
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {classList.map((i: any, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell>{idx + 1}</TableCell>
+                    <TableCell>{i.level.label}</TableCell>
+                    <TableCell>Class {i.name}</TableCell>
+                    <TableCell>{i.formTeacher.name}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
