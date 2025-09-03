@@ -1,0 +1,23 @@
+/* Outer container of every page */
+.layout-box {
+  width: 100%;
+  padding: 24px 49px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Page title text */
+.layout-title {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  color: #333;
+}
+
+/* Optional: tighten padding on small screens */
+@media (max-width: 640px) {
+  .layout-box {
+    padding: 16px 20px;
+  }
+}
