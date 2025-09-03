@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import MainLayout from "../../layout/MainLayout";
@@ -11,6 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import axiosInstance from "../../utilities/axiosInstance";
 
 const Teachers: React.FC = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Teachers: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/teachers");
+        const res = await axiosInstance.get("/teachers");
         setTeacherList(res.data);
         setIsLoading(false);
       } catch (error: any) {

@@ -10,7 +10,7 @@ import MainLayout from "../../layout/MainLayout";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utilities/axiosInstance";
 
 const Classes: React.FC = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Classes: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/classes");
+        const res = await axiosInstance.get("/classes");
         setClassList(res.data);
         setIsLoading(false);
       } catch (error: any) {

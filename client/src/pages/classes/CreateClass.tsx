@@ -13,7 +13,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { newClassSchema } from "./schema/NewClassSchema";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utilities/axiosInstance";
 
 const CreateClass = () => {
   const navigate = useNavigate();
@@ -38,9 +38,7 @@ const CreateClass = () => {
   });
 
   const classCreation = async (data: any) => {
-    console.log("data", data);
-
-    await axios.post("http://localhost:4000/api/classes", {
+    await axiosInstance.post("/classes", {
       name: data.name,
       level: data.level,
       teacherEmail: data.teacher,
@@ -52,10 +50,7 @@ const CreateClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:4000/api/dropdown-options",
-        );
-        console.log("res", res.data);
+        const res = await axiosInstance.get("/dropdown-options");
         setOptions({
           level: res.data.level,
           teachers: res.data.teachers,
@@ -64,6 +59,8 @@ const CreateClass = () => {
         console.error("error", error.message);
       }
     };
+
+    fetchData();
   }, []);
 
   return (
