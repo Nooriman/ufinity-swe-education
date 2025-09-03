@@ -1,0 +1,59 @@
+/* Page header (title + add button) */
+.classes-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Force MUI Button to keep normal casing */
+.classes-add-btn {
+  text-transform: none !important;
+}
+
+/* Main white card area */
+.classes-card {
+  background-color: #ffffff;
+  height: 636px;
+  border-radius: 8px;
+}
+
+/* Empty-state full-height center wrapper */
+.classes-empty-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty-state content box */
+.classes-empty-box {
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 8px;
+}
+
+/* Empty-state text */
+.classes-empty-text {
+  color: #333;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 800;
+}
+
+/* Table box */
+.classes-table {
+  color: #000 !important;
+  padding: 32px !important;
+}
+
+/* Table head styling */
+.classes-table-head-row {
+  background-color: #e2e2e2;
+}
+
+.classes-table-head-cell {
+  font-weight: 800 !important;
+}

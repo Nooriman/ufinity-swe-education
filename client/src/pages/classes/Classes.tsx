@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../utilities/axiosInstance";
 import constant from "../../constant/constant.json";
+import "./style/Classes.css";
 
 const Classes: React.FC = () => {
   const navigate = useNavigate();
@@ -42,64 +43,41 @@ const Classes: React.FC = () => {
   return (
     <MainLayout
       title={
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="classes-titlebar">
           <span>{constant.title_classes}</span>
           <Button
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
-            style={{ textTransform: "none" }}
+            className="classes-add-btn"
           >
             {constant.button_add_class}
           </Button>
         </div>
       }
     >
-      <div
-        style={{
-          backgroundColor: "white",
-          height: "636px",
-          borderRadius: "8px",
-        }}
-      >
+      <div className="classes-card">
         {classList.length === 0 ? (
-          <div
-            style={{
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0px 2px 6px 0px rgba(0, 0, 0, 0.2)",
-              flexDirection: "column",
-              gap: "24px",
-            }}
-          >
-            <span
-              style={{
-                color: "#333",
-                fontSize: "18px",
-                lineHeight: "26px",
-                fontWeight: 800,
-              }}
-            >
-              {constant.class_empty}
-            </span>
-            <Button
-              onClick={navToCreation}
-              variant="contained"
-              style={{ textTransform: "none" }}
-              startIcon={<AddIcon />}
-            >
-              {constant.button_add_class}
-            </Button>
+          <div className="classes-empty-wrap">
+            <div className="classes-empty-box">
+              <span className="classes-empty-text">{constant.class_empty}</span>
+              <Button
+                onClick={navToCreation}
+                variant="contained"
+                className="classes-add-btn"
+                startIcon={<AddIcon />}
+              >
+                {constant.button_add_class}
+              </Button>
+            </div>
           </div>
         ) : (
-          <div style={{ color: "black", padding: "32px" }}>
+          <div className="classes-table">
             <Table>
               <TableHead>
-                <TableRow style={{ backgroundColor: "#e2e2e2" }}>
+                <TableRow className="classes-table-head-row">
                   {constant.class_header.map((i) => (
-                    <TableCell key={i} style={{ fontWeight: 800 }}>
+                    <TableCell key={i} className="classes-table-head-cell">
                       {i}
                     </TableCell>
                   ))}
