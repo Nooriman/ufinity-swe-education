@@ -20,7 +20,10 @@ export class AdminController {
       });
       res.status(StatusCodes.OK).json(teachers);
     } catch (error: any) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+      const status = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+      res
+        .status(status)
+        .json({ error: error.message || "Internal server error" });
     }
   }
 
@@ -58,7 +61,10 @@ export class AdminController {
         data: teacher,
       });
     } catch (error: any) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+      const status = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+      res
+        .status(status)
+        .json({ error: error.message || "Internal server error" });
     }
   }
 
@@ -73,7 +79,10 @@ export class AdminController {
 
       res.status(StatusCodes.OK).json(classes);
     } catch (error: any) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+      const status = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+      res
+        .status(status)
+        .json({ error: error.message || "Internal server error" });
     }
   }
 
@@ -122,7 +131,10 @@ export class AdminController {
         .status(StatusCodes.CREATED)
         .json({ message: "Successfully created new class!", data: newClass });
     } catch (error: any) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+      const status = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+      res
+        .status(status)
+        .json({ error: error.message || "Internal server error" });
     }
   }
 
@@ -151,7 +163,10 @@ export class AdminController {
         return res.status(StatusCodes.OK).json({ subject });
       }
     } catch (error: any) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
+      const status = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+      res
+        .status(status)
+        .json({ error: error.message || "Internal server error" });
     }
   }
 }
