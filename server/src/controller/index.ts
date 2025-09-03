@@ -14,6 +14,9 @@ export class AdminController {
         where: {
           isActive: true,
         },
+        include: {
+          subject: true,
+        },
       });
       res.status(StatusCodes.OK).json(teachers);
     } catch (error: any) {
