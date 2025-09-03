@@ -9,10 +9,10 @@ import {
 import MainLayout from "../../layout/MainLayout";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Classes = () => {
+const Classes: React.FC = () => {
   const navigate = useNavigate();
 
   const [classList, setClassList] = useState([]);
@@ -23,13 +23,17 @@ const Classes = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/classes")
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/api/classes");
         setClassList(res.data);
-        console.log("res", res.data);
-      })
-      .finally(() => setIsLoading(false));
+        setIsLoading(false);
+      } catch (error: any) {
+        console.error("error", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (isLoading) return <>Loading...</>;

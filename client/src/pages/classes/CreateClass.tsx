@@ -50,13 +50,20 @@ const CreateClass = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/dropdown-options").then((res) => {
-      console.log("res", res.data);
-      setOptions({
-        level: res.data.level,
-        teachers: res.data.teachers,
-      });
-    });
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/dropdown-options",
+        );
+        console.log("res", res.data);
+        setOptions({
+          level: res.data.level,
+          teachers: res.data.teachers,
+        });
+      } catch (error: any) {
+        console.error("error", error.message);
+      }
+    };
   }, []);
 
   return (
