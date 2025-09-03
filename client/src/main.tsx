@@ -6,6 +6,15 @@ import { RouterProvider } from "react-router/dom";
 import { router } from "./route/Router.tsx";
 
 const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+      },
+    },
+  },
   palette: {
     mode: "light",
     primary: {

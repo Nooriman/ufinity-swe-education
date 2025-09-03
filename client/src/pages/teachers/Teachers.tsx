@@ -53,7 +53,6 @@ const Teachers: React.FC = () => {
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
-            className="teachers-add-btn"
           >
             {constant.button_add_teacher}
           </Button>
@@ -69,7 +68,6 @@ const Teachers: React.FC = () => {
             <Button
               onClick={navToCreation}
               variant="contained"
-              className="teachers-add-btn"
               startIcon={<AddIcon />}
             >
               {constant.button_add_teacher}

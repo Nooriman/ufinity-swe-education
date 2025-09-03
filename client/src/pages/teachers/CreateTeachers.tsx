@@ -176,17 +176,11 @@ const CreateTeachers: React.FC = () => {
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
-            className="btn-no-transform"
             onClick={() => navigate("..", { relative: "path" })}
           >
             {constant.button_back}
           </Button>
-          <Button
-            variant="contained"
-            type="submit"
-            className="btn-no-transform"
-            disabled={isSubmitting}
-          >
+          <Button variant="contained" type="submit" disabled={isSubmitting}>
             {constant.button_add_class}
           </Button>
         </div>

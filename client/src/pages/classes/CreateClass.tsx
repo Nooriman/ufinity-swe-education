@@ -161,7 +161,6 @@ const CreateClass = () => {
                           <MenuItem>
                             <Button
                               size="small"
-                              className="btn-no-transform"
                               onClick={() => navigate("/teachers/create")}
                             >
                               {constant.button_empty_teacher}
@@ -191,17 +190,11 @@ const CreateClass = () => {
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
-            className="btn-no-transform"
             onClick={() => navigate("..", { relative: "path" })}
           >
             {constant.button_back}
           </Button>
-          <Button
-            variant="contained"
-            className="btn-no-transform"
-            type="submit"
-            disabled={isSubmitting}
-          >
+          <Button variant="contained" type="submit" disabled={isSubmitting}>
             {constant.button_add_class}
           </Button>
         </div>

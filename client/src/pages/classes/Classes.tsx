@@ -49,7 +49,6 @@ const Classes: React.FC = () => {
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
-            className="classes-add-btn"
           >
             {constant.button_add_class}
           </Button>
@@ -64,7 +63,6 @@ const Classes: React.FC = () => {
               <Button
                 onClick={navToCreation}
                 variant="contained"
-                className="classes-add-btn"
                 startIcon={<AddIcon />}
               >
                 {constant.button_add_class}
