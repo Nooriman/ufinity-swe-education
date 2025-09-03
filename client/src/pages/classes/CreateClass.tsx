@@ -16,6 +16,7 @@ import { newClassSchema } from "./schema/NewClassSchema";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utilities/axiosInstance";
 import constant from "../../constant/constant.json";
+import "./style/CreateClass.css";
 
 const CreateClass = () => {
   const navigate = useNavigate();
@@ -68,38 +69,11 @@ const CreateClass = () => {
   return (
     <MainLayout title={constant.title_add_class}>
       <Box component="form" onSubmit={handleSubmit(classCreation)}>
-        <div
-          style={{
-            backgroundColor: "white",
-            maxHeight: "636px",
-            borderRadius: "8px",
-          }}
-        >
-          <div
-            style={{
-              height: "100%",
-              padding: "32px",
-              boxShadow: "0px 2px 6px 0px rgba(0, 0, 0, 0.2)",
-              flexDirection: "column",
-              gap: "24px",
-            }}
-          >
-            <div
-              style={{
-                width: "464px",
-                display: "flex",
-                gap: "24px",
-                flexDirection: "column",
-              }}
-            >
+        <div className="create-class-card">
+          <div className="create-class-panel">
+            <div className="create-class-form-stack">
               <FormControl fullWidth error={!!errors.level} size="small">
-                <label
-                  style={{
-                    color: "#333",
-                    fontWeight: 600,
-                    marginBottom: "8px",
-                  }}
-                >
+                <label className="create-class-label">
                   {constant.form_label_class_level}
                 </label>
                 <Controller
@@ -116,7 +90,7 @@ const CreateClass = () => {
                         selected !== "" ? (
                           (selected as string)
                         ) : (
-                          <span style={{ opacity: 0.5 }}>
+                          <span className="create-class-select-placeholder">
                             {constant.dropdown_placerholder_level}
                           </span>
                         )
@@ -134,13 +108,7 @@ const CreateClass = () => {
               </FormControl>
 
               <FormControl fullWidth error={!!errors.name} size="small">
-                <label
-                  style={{
-                    color: "#333",
-                    fontWeight: 600,
-                    marginBottom: "8px",
-                  }}
-                >
+                <label className="create-class-label">
                   {constant.form_label_class_name}
                 </label>
                 <Controller
@@ -160,13 +128,7 @@ const CreateClass = () => {
               </FormControl>
 
               <FormControl fullWidth error={!!errors.teacher} size="small">
-                <label
-                  style={{
-                    color: "#333",
-                    fontWeight: 600,
-                    marginBottom: "8px",
-                  }}
-                >
+                <label className="create-class-label">
                   {constant.form_label_class_teacher}
                 </label>
                 <Controller
@@ -182,7 +144,7 @@ const CreateClass = () => {
                         selected !== "" ? (
                           (selected as string)
                         ) : (
-                          <span style={{ opacity: 0.5 }}>
+                          <span className="create-class-select-placeholder">
                             {constant.dropdown_placerholder_teacher}
                           </span>
                         )
@@ -199,7 +161,7 @@ const CreateClass = () => {
                           <MenuItem>
                             <Button
                               size="small"
-                              style={{ textTransform: "none" }}
+                              className="btn-no-transform"
                               onClick={() => navigate("/teachers/create")}
                             >
                               {constant.button_empty_teacher}
@@ -224,25 +186,19 @@ const CreateClass = () => {
             </div>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            marginTop: "24px",
-            justifyContent: "end",
-          }}
-        >
+
+        <div className="create-class-actions">
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
-            style={{ textTransform: "none" }}
+            className="btn-no-transform"
             onClick={() => navigate("..", { relative: "path" })}
           >
             {constant.button_back}
           </Button>
           <Button
             variant="contained"
-            style={{ textTransform: "none" }}
+            className="btn-no-transform"
             type="submit"
             disabled={isSubmitting}
           >

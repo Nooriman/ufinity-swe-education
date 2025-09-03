@@ -1,0 +1,65 @@
+/* Page title bar (if you render one here) */
+.create-class-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main white card wrapper (if you use one for the page) */
+.create-class-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Generic form section label (the small grey label above inputs) */
+.create-class-label {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: inline-block; /* keep margin-bottom effective */
+}
+
+/* Form layout helpers */
+.create-class-form {
+  display: grid;
+  gap: 16px;
+}
+
+/* Button row at the bottom */
+.create-class-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  justify-content: end;
+}
+
+/* Keep MUI Button casing as-is */
+.btn-no-transform {
+  text-transform: none !important;
+}
+
+/* MUI Select: dim the disabled placeholder option */
+.create-class-select-placeholder {
+  opacity: 0.7;
+  color: #666;
+}
+
+/* Outer panel that wraps the whole form content */
+.create-class-panel {
+  height: 100%;
+  padding: 32px;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  display: flex; /* was implicit in the inline styles, make it explicit */
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 8px; /* optional: looks nicer */
+  background: #fff; /* optional: if you want a white panel */
+}
+
+/* Inner column that constrains the form width */
+.create-class-form-stack {
+  width: 464px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
