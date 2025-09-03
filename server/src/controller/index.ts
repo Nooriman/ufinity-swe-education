@@ -35,7 +35,7 @@ export class AdminController {
 
       const subjectData = await this.prisma.option.findFirst({
         where: {
-          label: subject,
+          code: subject,
         },
       });
 
@@ -48,7 +48,7 @@ export class AdminController {
         data: {
           name,
           email,
-          contactNumber,
+          contactNumber: String(contactNumber),
           subjectId: subjectData?.id,
         },
       });
@@ -127,13 +127,22 @@ export class AdminController {
   }
 
   async getDropdownOptions(req: Request, res: Response) {
+    const module = req.params.module;
+
     try {
-      const options = await this.prisma.option.findMany();
-      const level = options.filter((item) => item.category === "class_level");
+      if (module === "classes") {
+        const options = await this.prisma.option.findMany();
+        const level = options.filter((item) => item.category === "class_level");
 
-      const teachers = await this.prisma.teacher.findMany();
+        const teachers = await this.prisma.teacher.findMany();
 
-      return res.status(StatusCodes.OK).json({ level, teachers });
+        return res.status(StatusCodes.OK).json({ level, teachers });
+      } else {
+        const subject = await this.prisma.option.findMany({
+          where: { category: "subject" },
+        });
+        return res.status(StatusCodes.OK).json({ subject });
+      }
     } catch (error: any) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error.message);
     }

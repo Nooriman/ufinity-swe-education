@@ -300,7 +300,7 @@ router.get("/classes", (req: Request, res: Response) => {
  *       500:
  *         description: Unexpected server error
  */
-router.get("/dropdown-options", (req: Request, res: Response) => {
+router.get("/dropdown-options/:module", (req: Request, res: Response) => {
   adminController.getDropdownOptions(req, res);
 });
 
