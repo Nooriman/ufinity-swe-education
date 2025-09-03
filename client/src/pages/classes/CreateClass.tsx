@@ -191,23 +191,30 @@ const CreateClass = () => {
                         field.onChange(e);
                       }}
                     >
-                      <MenuItem disabled>
-                        <span>{constant.dropdown_placerholder_empty}</span>
-                      </MenuItem>
-                      <MenuItem>
-                        <Button
-                          size="small"
-                          style={{ textTransform: "none" }}
-                          onClick={() => navigate("/teachers/create")}
-                        >
-                          {constant.button_empty_teacher}
-                        </Button>
-                      </MenuItem>
-                      {/* {options.teachers.map((i: any) => ( */}
-                      {/*   <MenuItem key={i.id} value={i.email}> */}
-                      {/*     {i.name} */}
-                      {/*   </MenuItem> */}
-                      {/* ))} */}
+                      {options.teachers.length === 0 ? (
+                        <>
+                          <MenuItem disabled>
+                            <span>{constant.dropdown_placerholder_empty}</span>
+                          </MenuItem>
+                          <MenuItem>
+                            <Button
+                              size="small"
+                              style={{ textTransform: "none" }}
+                              onClick={() => navigate("/teachers/create")}
+                            >
+                              {constant.button_empty_teacher}
+                            </Button>
+                          </MenuItem>
+                        </>
+                      ) : (
+                        <>
+                          {options.teachers.map((i: any) => (
+                            <MenuItem key={i.id} value={i.email}>
+                              {i.name}
+                            </MenuItem>
+                          ))}
+                        </>
+                      )}
                     </Select>
                   )}
                 />
