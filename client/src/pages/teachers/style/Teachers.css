@@ -1,0 +1,57 @@
+/* Title bar (page title + Add button) */
+.teachers-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Keep MUI Button casing as-is */
+.teachers-add-btn {
+  text-transform: none !important;
+}
+
+/* Main white card */
+.teachers-card {
+  background-color: #ffffff;
+  height: 636px;
+  border-radius: 8px;
+}
+
+/* Empty-state full-height center wrapper */
+.teachers-empty-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty-state content box */
+.teachers-empty-box {
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Empty-state text */
+.teachers-empty-text {
+  color: #333;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 800;
+}
+
+.teachers-table {
+  color: #000;
+  padding: 32px;
+}
+
+.teachers-table-head-row {
+  background-color: #e2e2e2;
+}
+.teachers-table-head-cell {
+  font-weight: 800 !important;
+}

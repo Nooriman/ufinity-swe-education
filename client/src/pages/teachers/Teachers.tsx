@@ -12,6 +12,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import axiosInstance from "../../utilities/axiosInstance";
 import constant from "../../constant/constant.json";
+import "./style/Teachers.css";
 
 const Teachers: React.FC = () => {
   const navigate = useNavigate();
@@ -46,64 +47,41 @@ const Teachers: React.FC = () => {
   return (
     <MainLayout
       title={
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="teachers-titlebar">
           <span>{constant.title_teachers}</span>
           <Button
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
-            style={{ textTransform: "none" }}
+            className="teachers-add-btn"
           >
             {constant.button_add_teacher}
           </Button>
         </div>
       }
     >
-      <div
-        style={{
-          backgroundColor: "white",
-          height: "636px",
-          borderRadius: "8px",
-        }}
-      >
+      <div className="teachers-card">
         {teacherList.length === 0 ? (
-          <div
-            style={{
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0px 2px 6px 0px rgba(0, 0, 0, 0.2)",
-              flexDirection: "column",
-              gap: "24px",
-            }}
-          >
-            <span
-              style={{
-                color: "#333",
-                fontSize: "18px",
-                lineHeight: "26px",
-                fontWeight: 800,
-              }}
-            >
+          <div className="teachers-empty-box">
+            <span className="teachers-empty-text">
               {constant.teachers_empty}
             </span>
             <Button
               onClick={navToCreation}
               variant="contained"
-              style={{ textTransform: "none" }}
+              className="teachers-add-btn"
               startIcon={<AddIcon />}
             >
               {constant.button_add_teacher}
             </Button>
           </div>
         ) : (
-          <div style={{ color: "black", padding: "32px" }}>
+          <div className="teachers-table">
             <Table>
               <TableHead>
-                <TableRow style={{ backgroundColor: "#e2e2e2" }}>
+                <TableRow className="teachers-table-head-row">
                   {constant.teachers_header.map((i) => (
-                    <TableCell key={i} style={{ fontWeight: 800 }}>
+                    <TableCell key={i} className="teachers-table-head-cell">
                       {i}
                     </TableCell>
                   ))}
