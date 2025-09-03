@@ -1,0 +1,53 @@
+/* Main panel wrapper */
+.create-teacher-panel {
+  height: 100%;
+  padding: 32px;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Inner column that constrains form width */
+.create-teacher-form-stack {
+  width: 464px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .create-teacher-form-stack {
+    width: 100%;
+    max-width: 464px;
+  }
+}
+
+/* Field label above inputs */
+.create-teacher-label {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* Bottom action row (Back / Create) */
+.create-teacher-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  justify-content: end;
+}
+
+/* Keep MUI Button casing */
+.btn-no-transform {
+  text-transform: none !important;
+}
+
+/* Select placeholder styling */
+.create-teacher-select-placeholder {
+  opacity: 0.7;
+  color: #666;
+}
