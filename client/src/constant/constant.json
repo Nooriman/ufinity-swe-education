@@ -1,0 +1,31 @@
+{
+  "title_add_class": "Add Class",
+  "title_classes": "Classes",
+  "form_label_class_name": "Class Name",
+  "form_label_class_level": "Class Level",
+  "form_label_class_teacher": "Form Teacher",
+  "title_add_teacher": "Add Teacher",
+  "title_teachers": "Teachers",
+  "form_label_teacher_name": "Name",
+  "form_label_teacher_subject": "Subject",
+  "form_label_teacher_email": "Email Address",
+  "form_label_teacher_phone": "Work Contact Number",
+  "button_back": "Back",
+  "button_add_class": "Add Class",
+  "button_add_teacher": "Add Teacher",
+  "class_empty": "There are no existing classes yet.",
+  "class_header": [
+    "#",
+    "Class Level",
+    "Class Name",
+    "Form Teacher"
+  ],
+  "teachers_empty": "There are no existing teachers yet.",
+  "teachers_header": [
+    "#",
+    "Name",
+    "Subject",
+    "Email",
+    "Work Contact"
+  ]
+}

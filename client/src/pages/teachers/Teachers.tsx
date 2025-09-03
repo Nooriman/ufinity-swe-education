@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import axiosInstance from "../../utilities/axiosInstance";
+import constant from "../../constant/constant.json";
 
 const Teachers: React.FC = () => {
   const navigate = useNavigate();
@@ -46,14 +47,14 @@ const Teachers: React.FC = () => {
     <MainLayout
       title={
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>Teachers</span>
+          <span>{constant.title_teachers}</span>
           <Button
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
             style={{ textTransform: "none" }}
           >
-            Add Teacher
+            {constant.button_add_teacher}
           </Button>
         </div>
       }
@@ -85,7 +86,7 @@ const Teachers: React.FC = () => {
                 fontWeight: 800,
               }}
             >
-              There are no existing teachers yet.
+              {constant.teachers_empty}
             </span>
             <Button
               onClick={navToCreation}
@@ -93,7 +94,7 @@ const Teachers: React.FC = () => {
               style={{ textTransform: "none" }}
               startIcon={<AddIcon />}
             >
-              Add Teacher
+              {constant.button_add_teacher}
             </Button>
           </div>
         ) : (
@@ -101,13 +102,11 @@ const Teachers: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow style={{ backgroundColor: "#e2e2e2" }}>
-                  <TableCell style={{ fontWeight: 800 }}>#</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>Name</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>Subject</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>Email</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>
-                    Work Contact
-                  </TableCell>
+                  {constant.teachers_header.map((i) => (
+                    <TableCell key={i} style={{ fontWeight: 800 }}>
+                      {i}
+                    </TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>

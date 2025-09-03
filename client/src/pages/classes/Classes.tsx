@@ -11,6 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../utilities/axiosInstance";
+import constant from "../../constant/constant.json";
 
 const Classes: React.FC = () => {
   const navigate = useNavigate();
@@ -42,14 +43,14 @@ const Classes: React.FC = () => {
     <MainLayout
       title={
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>Classes</span>
+          <span>{constant.title_classes}</span>
           <Button
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
             style={{ textTransform: "none" }}
           >
-            Add Class
+            {constant.button_add_class}
           </Button>
         </div>
       }
@@ -81,7 +82,7 @@ const Classes: React.FC = () => {
                 fontWeight: 800,
               }}
             >
-              There are no existing classes yet.
+              {constant.class_empty}
             </span>
             <Button
               onClick={navToCreation}
@@ -89,7 +90,7 @@ const Classes: React.FC = () => {
               style={{ textTransform: "none" }}
               startIcon={<AddIcon />}
             >
-              Add Class
+              {constant.button_add_class}
             </Button>
           </div>
         ) : (
@@ -97,12 +98,11 @@ const Classes: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow style={{ backgroundColor: "#e2e2e2" }}>
-                  <TableCell style={{ fontWeight: 800 }}>#</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>Class Level</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>Class Name</TableCell>
-                  <TableCell style={{ fontWeight: 800 }}>
-                    Form Teacher
-                  </TableCell>
+                  {constant.class_header.map((i) => (
+                    <TableCell key={i} style={{ fontWeight: 800 }}>
+                      {i}
+                    </TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>

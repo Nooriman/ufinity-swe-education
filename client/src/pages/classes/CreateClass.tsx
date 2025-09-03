@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { newClassSchema } from "./schema/NewClassSchema";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utilities/axiosInstance";
+import constant from "../../constant/constant.json";
 
 const CreateClass = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const CreateClass = () => {
   }, []);
 
   return (
-    <MainLayout title="Add Class">
+    <MainLayout title={constant.title_add_class}>
       <Box component="form" onSubmit={handleSubmit(classCreation)}>
         <div
           style={{
@@ -98,7 +99,7 @@ const CreateClass = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Class Level
+                  {constant.form_label_class_level}
                 </label>
                 <Controller
                   name="level"
@@ -128,7 +129,7 @@ const CreateClass = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Class Name
+                  {constant.form_label_class_name}
                 </label>
                 <Controller
                   control={control}
@@ -152,7 +153,7 @@ const CreateClass = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Form Teacher
+                  {constant.form_label_class_teacher}
                 </label>
                 <Controller
                   control={control}
@@ -192,7 +193,7 @@ const CreateClass = () => {
             style={{ textTransform: "none" }}
             onClick={() => navigate("..", { relative: "path" })}
           >
-            Back
+            {constant.button_back}
           </Button>
           <Button
             variant="contained"
@@ -200,7 +201,7 @@ const CreateClass = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            Add Class
+            {constant.button_add_class}
           </Button>
         </div>
       </Box>

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { newTeacherSchema } from "./schema/NewTeacherSchema";
 import axiosInstance from "../../utilities/axiosInstance";
+import constant from "../../constant/constant.json";
 
 const CreateTeachers: React.FC = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const CreateTeachers: React.FC = () => {
   }, []);
 
   return (
-    <MainLayout title="Add Class">
+    <MainLayout title={constant.title_add_teacher}>
       <Box component="form" onSubmit={handleSubmit(teacherCreation)}>
         <div
           style={{
@@ -100,7 +101,7 @@ const CreateTeachers: React.FC = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Name
+                  {constant.form_label_teacher_name}
                 </label>
                 <Controller
                   control={control}
@@ -125,7 +126,7 @@ const CreateTeachers: React.FC = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Subject
+                  {constant.form_label_teacher_subject}
                 </label>
                 <Controller
                   name="subject"
@@ -156,7 +157,7 @@ const CreateTeachers: React.FC = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Email Address
+                  {constant.form_label_teacher_email}
                 </label>
                 <Controller
                   control={control}
@@ -181,7 +182,7 @@ const CreateTeachers: React.FC = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  Work Contact Number
+                  {constant.form_label_teacher_email}
                 </label>
                 <Controller
                   control={control}
@@ -213,7 +214,7 @@ const CreateTeachers: React.FC = () => {
             style={{ textTransform: "none" }}
             onClick={() => navigate("..", { relative: "path" })}
           >
-            Back
+            {constant.button_back}
           </Button>
           <Button
             variant="contained"
@@ -221,7 +222,7 @@ const CreateTeachers: React.FC = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            Add Class
+            {constant.button_add_class}
           </Button>
         </div>
       </Box>
