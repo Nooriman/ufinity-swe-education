@@ -46,14 +46,14 @@ const Teachers: React.FC = () => {
     <MainLayout
       title={
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>Classes</span>
+          <span>Teachers</span>
           <Button
             variant="contained"
             onClick={navToCreation}
             startIcon={<AddIcon />}
             style={{ textTransform: "none" }}
           >
-            Add Class
+            Add Teacher
           </Button>
         </div>
       }
@@ -93,7 +93,7 @@ const Teachers: React.FC = () => {
               style={{ textTransform: "none" }}
               startIcon={<AddIcon />}
             >
-              Add Class
+              Add Teacher
             </Button>
           </div>
         ) : (
