@@ -50,7 +50,7 @@ const CreateClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axiosInstance.get("/dropdown-options/classes");
+        const res = await axiosInstance.get("/dropdown-options/class_level");
         setOptions({
           level: res.data.level,
           teachers: res.data.teachers,

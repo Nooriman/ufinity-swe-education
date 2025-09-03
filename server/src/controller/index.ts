@@ -129,17 +129,24 @@ export class AdminController {
   async getDropdownOptions(req: Request, res: Response) {
     const module = req.params.module;
 
-    try {
-      if (module === "classes") {
-        const options = await this.prisma.option.findMany();
-        const level = options.filter((item) => item.category === "class_level");
+    if (!module)
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Missing Params" });
 
+    try {
+      if (module === "class_level") {
+        const level = await this.prisma.option.findMany({
+          where: {
+            category: module,
+          },
+        });
         const teachers = await this.prisma.teacher.findMany();
 
         return res.status(StatusCodes.OK).json({ level, teachers });
       } else {
         const subject = await this.prisma.option.findMany({
-          where: { category: "subject" },
+          where: { category: module },
         });
         return res.status(StatusCodes.OK).json({ subject });
       }
