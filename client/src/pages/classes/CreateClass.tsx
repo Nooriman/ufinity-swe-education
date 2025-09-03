@@ -5,6 +5,7 @@ import {
   Select,
   TextField,
   FormControl,
+  FormHelperText,
 } from "@mui/material";
 import MainLayout from "../../layout/MainLayout";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -32,9 +33,9 @@ const CreateClass = () => {
   } = useForm({
     resolver: yupResolver(newClassSchema),
     defaultValues: {
-      level: "P2",
-      name: "2A",
-      teacher: "teachermary@gmail.com",
+      level: "",
+      name: undefined,
+      teacher: "",
     },
   });
 
@@ -110,6 +111,16 @@ const CreateClass = () => {
                       value={field.value}
                       onChange={field.onChange}
                       size="small"
+                      displayEmpty
+                      renderValue={(selected) =>
+                        selected !== "" ? (
+                          (selected as string)
+                        ) : (
+                          <span style={{ opacity: 0.5 }}>
+                            {constant.dropdown_placerholder_level}
+                          </span>
+                        )
+                      }
                     >
                       {options.level.map((i: any) => (
                         <MenuItem key={i.id} value={i.code}>
@@ -119,9 +130,10 @@ const CreateClass = () => {
                     </Select>
                   )}
                 />
+                <FormHelperText>{errors.level?.message}</FormHelperText>
               </FormControl>
 
-              <FormControl fullWidth>
+              <FormControl fullWidth error={!!errors.name} size="small">
                 <label
                   style={{
                     color: "#333",
@@ -136,16 +148,18 @@ const CreateClass = () => {
                   name="name"
                   render={({ field }) => (
                     <TextField
-                      placeholder="Class Name"
+                      error={errors.name?.message ? true : false}
+                      placeholder={constant.text_placeholders_classname}
                       size="small"
                       value={field.value}
                       onChange={(e) => field.onChange(e)}
                     />
                   )}
                 />
+                <FormHelperText>{errors.name?.message}</FormHelperText>
               </FormControl>
 
-              <FormControl fullWidth>
+              <FormControl fullWidth error={!!errors.teacher} size="small">
                 <label
                   style={{
                     color: "#333",
@@ -163,18 +177,42 @@ const CreateClass = () => {
                       variant="outlined"
                       value={field.value}
                       size="small"
+                      displayEmpty
+                      renderValue={(selected) =>
+                        selected !== "" ? (
+                          (selected as string)
+                        ) : (
+                          <span style={{ opacity: 0.5 }}>
+                            {constant.dropdown_placerholder_teacher}
+                          </span>
+                        )
+                      }
                       onChange={(e) => {
                         field.onChange(e);
                       }}
                     >
-                      {options.teachers.map((i: any) => (
-                        <MenuItem key={i.id} value={i.email}>
-                          {i.name}
-                        </MenuItem>
-                      ))}
+                      <MenuItem disabled>
+                        <span>{constant.dropdown_placerholder_empty}</span>
+                      </MenuItem>
+                      <MenuItem>
+                        <Button
+                          size="small"
+                          style={{ textTransform: "none" }}
+                          onClick={() => navigate("/teachers/create")}
+                        >
+                          {constant.button_empty_teacher}
+                        </Button>
+                      </MenuItem>
+                      {/* {options.teachers.map((i: any) => ( */}
+                      {/*   <MenuItem key={i.id} value={i.email}> */}
+                      {/*     {i.name} */}
+                      {/*   </MenuItem> */}
+                      {/* ))} */}
                     </Select>
                   )}
                 />
+
+                <FormHelperText>{errors.teacher?.message}</FormHelperText>
               </FormControl>
             </div>
           </div>

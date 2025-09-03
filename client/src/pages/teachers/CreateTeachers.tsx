@@ -7,6 +7,7 @@ import {
   Select,
   Button,
   TextField,
+  FormHelperText,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,10 +30,10 @@ const CreateTeachers: React.FC = () => {
   } = useForm({
     resolver: yupResolver(newTeacherSchema),
     defaultValues: {
-      email: "nooriman.mdnoor@gmail.com",
-      phone: 81830414,
-      name: "2A",
-      subject: "ART",
+      email: undefined,
+      phone: undefined,
+      name: undefined,
+      subject: "",
     },
   });
 
@@ -93,7 +94,7 @@ const CreateTeachers: React.FC = () => {
               }}
             >
               {/* NAME */}
-              <FormControl fullWidth>
+              <FormControl fullWidth error={!!errors.name} size="small">
                 <label
                   style={{
                     color: "#333",
@@ -108,13 +109,15 @@ const CreateTeachers: React.FC = () => {
                   name="name"
                   render={({ field }) => (
                     <TextField
-                      placeholder="Class Name"
+                      error={errors.email?.message ? true : false}
+                      placeholder={constant.text_placeholders_name}
                       size="small"
                       value={field.value}
                       onChange={(e) => field.onChange(e)}
                     />
                   )}
                 />
+                <FormHelperText>{errors.name?.message}</FormHelperText>
               </FormControl>
 
               {/* SUBJECT */}
@@ -134,9 +137,19 @@ const CreateTeachers: React.FC = () => {
                   render={({ field }) => (
                     <Select
                       variant="outlined"
-                      value={field.value}
+                      value={field.value ?? " "}
                       onChange={field.onChange}
                       size="small"
+                      displayEmpty
+                      renderValue={(selected) =>
+                        selected !== "" ? (
+                          (selected as string)
+                        ) : (
+                          <span style={{ opacity: 0.5 }}>
+                            {constant.dropdown_placerholder_subject}
+                          </span>
+                        )
+                      }
                     >
                       {options.map((i: any) => (
                         <MenuItem key={i.id} value={i.code}>
@@ -146,10 +159,11 @@ const CreateTeachers: React.FC = () => {
                     </Select>
                   )}
                 />
+                <FormHelperText>{errors.subject?.message}</FormHelperText>
               </FormControl>
 
               {/* EMAIL */}
-              <FormControl fullWidth>
+              <FormControl fullWidth error={!!errors.email} size="small">
                 <label
                   style={{
                     color: "#333",
@@ -164,17 +178,19 @@ const CreateTeachers: React.FC = () => {
                   name="email"
                   render={({ field }) => (
                     <TextField
-                      placeholder="Email Address"
+                      error={errors.email?.message ? true : false}
+                      placeholder={constant.text_placeholders_email}
                       size="small"
                       value={field.value}
                       onChange={(e) => field.onChange(e)}
                     />
                   )}
                 />
+                <FormHelperText>{errors.email?.message}</FormHelperText>
               </FormControl>
 
               {/* PHONE NUMBER */}
-              <FormControl fullWidth>
+              <FormControl fullWidth error={!!errors.phone} size="small">
                 <label
                   style={{
                     color: "#333",
@@ -182,20 +198,22 @@ const CreateTeachers: React.FC = () => {
                     marginBottom: "8px",
                   }}
                 >
-                  {constant.form_label_teacher_email}
+                  {constant.form_label_teacher_phone}
                 </label>
                 <Controller
                   control={control}
                   name="phone"
                   render={({ field }) => (
                     <TextField
-                      placeholder="Work contact number"
+                      error={errors.phone?.message ? true : false}
+                      placeholder={constant.text_placeholders_phone}
                       size="small"
                       value={field.value}
                       onChange={(e) => field.onChange(e)}
                     />
                   )}
                 />
+                <FormHelperText>{errors.phone?.message}</FormHelperText>
               </FormControl>
             </div>
           </div>

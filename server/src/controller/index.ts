@@ -146,7 +146,7 @@ export class AdminController {
         return res.status(StatusCodes.OK).json({ level, teachers });
       } else {
         const subject = await this.prisma.option.findMany({
-          where: { category: module },
+          where: { category: "subject" },
         });
         return res.status(StatusCodes.OK).json({ subject });
       }
