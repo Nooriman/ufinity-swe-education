@@ -67,3 +67,6 @@ cd server && npm run dev
 cd client && npm run dev
 ```
 
+### Postman Link
+https://web.postman.co/workspace/Iman-Workspace~b44e4d25-017b-4cbb-b7f4-d1398751cb51/collection/30664907-b3b5a4df-7e22-4d2e-8070-c87310f91d68?action=share&source=copy-link&creator=30664907
+
